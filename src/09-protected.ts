@@ -1,4 +1,6 @@
-export class Animal {
+// las clases abstractas no permiten ser instanciadas ya que deben ser usadas por medio de las clases hijas y estas deben tener comportamientos mas especificos
+// las clases hijas son las que al final definen el comportamiento de la clase abstracta
+export abstract class Animal {
   constructor(protected name: string) {
 
   }
