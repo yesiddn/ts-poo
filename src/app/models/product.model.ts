@@ -8,6 +8,4 @@ export interface Product {
   description: string;
   category:    Category;
   images:      string[];
-  creationAt:  Date;
-  updatedAt:   Date;
 }
