@@ -71,3 +71,79 @@ K - Llave
 N - Número
 V - Valor
 T - Tipo
+
+## Decorators
+
+Para la practica de los decorators, se va a usar la librería `class-validator`.
+
+### Installation
+
+```bash
+npm install class-validator --save
+```
+
+### Ejemplo de decorators
+
+```ts
+export class Post {
+  @Length(10, 20)
+  title: string;
+
+  @Contains('hello')
+  text: string;
+
+  @IsInt()
+  @Min(0)
+  @Max(10)
+  rating: number;
+
+  @IsEmail()
+  email: string;
+
+  @IsFQDN()
+  site: string;
+
+  @IsDate()
+  createDate: Date;
+}
+```
+
+### ¿Qué son los decorators?
+
+Su sintaxis es similar a las anotaciones de Java, se usa un `@` seguido de un nombre de función.
+Los decoradores agregar validaciones o una funcionalidad extra a una clase, método o propiedad.
+Por ejemplo, en el siguiente caso:
+
+```ts
+@Min(0)
+@Max(10)
+rating: number;
+```
+
+Se está validando que el valor de `rating` sea mayor o igual a 0 y menor o igual a 10.
+
+## Mensajes de error
+
+Este es un ejemplo de error que se lanzo en `./src/app/dts/category.dto.ts`.
+
+```ts
+[
+  ValidationError {
+    target: CreateCategoryDto { name: 'A' },
+    value: 'A',
+    property: 'name',
+    children: [],
+    constraints: { isLength: 'name must be longer than or equal to 3 characters' }
+  },
+  ValidationError {
+    target: CreateCategoryDto { name: 'A' },
+    value: undefined,
+    property: 'image',
+    children: [],
+    constraints: {
+      isNotEmpty: 'image should not be empty',
+      isUrl: 'image must be a URL address'
+    }
+  }
+]
+```
